@@ -23,7 +23,7 @@ function Main(){
   let T_StatSum = 0;
   let cost = 0;
   function compound(initialTP, currentUC, inc, attAmnt){
-    let _cost = currentUC;
+    let _cost = 0;
     for(let i = 0; i < attAmnt; i++){
       _cost += currentUC+(inc*(i+1));
     }
