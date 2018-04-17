@@ -32,6 +32,12 @@ function Main(){
       cost: _cost
     };
   }
+  // COMBAK: CALCULATE STAT MULTIPLIERS
+  /*
+    Multipliers:
+    Melee Damage = Str * 3.25
+
+   */
   function updateStatSum(){
     StatSum = 0;
     T_StatSum = 0;
