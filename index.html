@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>Dragon Block C: Stat Calculator</title>
     <style media="screen">
+      html{
+        background: darkblue;
+      }
       input[name="upgradeInc"]{
         width: 60px;
       }
@@ -19,22 +22,49 @@
         font-family: "Lucida console", "Courier New", "consolas", monospace;
       }
       table{
-        width: 50%;
+        background: darkslateblue;
+        padding: 5px 10px 5px 5px;
+        border: white 0.1em solid;
+        border-collapse: collapse;
         font-size: 24px;
         font-family: "Lucida console", "Courier New", "consolas", monospace;
       }
-      input[name$="Str"], input[name$="Dex"], input[name$="Con"], input[name$="Wil"], input[name$="Mnd"], input[name$="Spi"]{
+      table tr{
+        border: dimgrey 0.1em dotted;
+      }
+      table#attributes{
+        width: 50%;
+      }
+      table#statistics{
         width: 100%;
-        color: red;
+      }
+      input[name$="Str"], input[name$="Dex"], input[name$="Con"], input[name$="Wil"], input[name$="Mnd"], input[name$="Spi"]{
+        width: 90%;
+        text-align: center;
+        color: crimson;
         font-size: 24px;
       }
-      tr th:nth-child(1n + 2){
+      table#attributes tr th:nth-child(1n + 2){
         width: 40%;
       }
-      tr td:first-child{
+      table#attributes tr td:first-child{
         width: 20%;
         text-align: center;
         color: grey !important;
+      }
+      table#statistics tr th:nth-child(1n + 2){
+        width: 40%;
+      }
+      table#statistics tr td:first-child{
+        width: 40%;
+        text-align: center;
+        color: grey !important;
+      }
+      table#statistics tr td:nth-child(1n + 2){
+        text-align: center;
+      }
+      table#statistics tr td:nth-child(1n + 2){
+        color: crimson;
       }
     </style>
   </head>
@@ -51,7 +81,7 @@
     <h2>
       <span id="tpCondition">Remaining TP:</span> <span id="tpRemaining">0</span>
     </h2>
-    <table>
+    <table id="attributes">
       <tr>
         <th>Attribute</th>
         <th>Current</th>
@@ -112,7 +142,68 @@
         </td>
       </tr>
     </table>
-    <h2>Update Cost: <span id="uc">0</span></h2> <!-- 21566 -->
+    <h2>Upgrade Cost: <span id="uc">0</span> TP</h2> <!-- 21566 -->
+    <table id="statistics">
+      <tr>
+        <th>Stastics</th>
+        <th>Current</th>
+        <th>Target</th>
+      </tr>
+      <tr>
+        <td>Melee Dmg: </td>
+        <td>
+          <span name="C_MDmg">0</span>
+        </td>
+        <td>
+          <span name="MDmg">0</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Defense: </td>
+        <td>
+          <span name="C_Def">0</span>
+        </td>
+        <td>
+          <span name="Def">0</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Body: </td>
+        <td>
+          <span name="C_Bod">0</span>
+        </td>
+        <td>
+          <span name="Bod">0</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Stamina: </td>
+        <td>
+          <span name="C_Stam">0</span>
+        </td>
+        <td>
+          <span name="Stam">0</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Ki Power: </td>
+        <td>
+          <span name="C_KiP">0</span>
+        </td>
+        <td>
+          <span name="KiP">0</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Max Ki: </td>
+        <td>
+          <span name="C_MKi">0</span>
+        </td>
+        <td>
+          <span name="MKi">0</span>
+        </td>
+      </tr>
+    </table>
     <script src="./main.js" charset="utf-8"></script>
   </body>
 </html>
