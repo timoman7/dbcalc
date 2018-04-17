@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>
+      <label for="upgradeInc">Upgrade Increment:</label>
+      <input type="number" name="upgradeInc" min="1" value="2" tabindex="1">
+    </h1>
+    <h2>Required TP: <span id="tpRequired">0</span></h2>
+    <h2>
+      <label for="curTP">Current TP:</label>
+      <input type="number" name="curTP" min="0" value="0" tabindex="2">
+    </h2>
+    <h2>
+      <span id="tpCondition">Remaining TP:</span> <span id="tpRemaining">0</span>
+    </h2>
+    <table>
+      <tr>
+        <th>Attribute</th>
+        <th>Current</th>
+        <th>Target</th>
+      </tr>
+      <tr>
+        <td>STR: </td>
+        <td>
+          <input type="number" name="C_Str" min="0" value="0" tabindex="3"> <!-- 3200 -->
+        </td>
+        <td>
+          <input type="number" name="Str" min="0" value="0" tabindex="9"> <!-- 3200 -->
+        </td>
+      </tr>
+      <tr>
+        <td>DEX: </td>
+        <td>
+          <input type="number" name="C_Dex" min="0" value="0" tabindex="4"> <!-- 2000 -->
+        </td>
+        <td>
+          <input type="number" name="Dex" min="0" value="0" tabindex="10"> <!-- 2000 -->
+        </td>
+      </tr>
+      <tr>
+        <td>CON: </td>
+        <td>
+          <input type="number" name="C_Con" min="0" value="0" tabindex="5"> <!-- 2000 -->
+        </td>
+        <td>
+          <input type="number" name="Con" min="0" value="0" tabindex="11"> <!-- 2000 -->
+        </td>
+      </tr>
+      <tr>
+        <td>WIL: </td>
+        <td>
+          <input type="number" name="C_Wil" min="0" value="0" tabindex="6"> <!-- 1000 -->
+        </td>
+        <td>
+          <input type="number" name="Wil" min="0" value="0" tabindex="12"> <!-- 1000 -->
+        </td>
+      </tr>
+      <tr>
+        <td>MND: </td>
+        <td>
+          <input type="number" name="C_Mnd" min="0" value="0" tabindex="7"> <!-- 1033 -->
+        </td>
+        <td>
+          <input type="number" name="Mnd" min="0" value="0" tabindex="13"> <!-- 1033 -->
+        </td>
+      </tr>
+      <tr>
+        <td>SPI: </td>
+        <td>
+          <input type="number" name="C_Spi" min="0" value="0" tabindex="8"> <!-- 1550 -->
+        </td>
+        <td>
+          <input type="number" name="Spi" min="0" value="0" tabindex="14"> <!-- 1550 -->
+        </td>
+      </tr>
+    </table>
+    <h2>Update Cost: <span id="uc">0</span></h2> <!-- 21566 -->
+    <script src="./main.js" charset="utf-8"></script>
+  </body>
+</html>
