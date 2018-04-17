@@ -54,7 +54,7 @@ function Main(){
     let newUC = T_StatSum * D_upgradeInc.valueAsNumber;
     D_uc.innerHTML = newUC;
     cost = 0;
-    let info = compound(D_curTP.valueAsNumber, newUC, D_upgradeInc.valueAsNumber, T_StatSum - StatSum);
+    let info = compound(D_curTP.valueAsNumber, StatSum * D_upgradeInc.valueAsNumber, D_upgradeInc.valueAsNumber, T_StatSum - StatSum);
     D_tpRequired.innerHTML = info.cost;
     if(info.leftover == 0){
       D_tpCondition.innerHTML = "Remaining TP:";
