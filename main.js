@@ -25,7 +25,7 @@ function Main(){
   function compound(initialTP, currentUC, inc, attAmnt){
     let _cost = 0;
     for(let i = 0; i < attAmnt; i++){
-      _cost += currentUC+(inc*(i+1));
+      _cost += currentUC+(inc*(i));
     }
     return {
       leftover: initialTP - _cost,
