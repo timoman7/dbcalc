@@ -2,7 +2,41 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Dragon Block C: Stat Calculator</title>
+    <style media="screen">
+      input[name="upgradeInc"]{
+        width: 60px;
+      }
+      h1, h2, h3{
+        font-family: "Lucida console", "Courier New", "consolas", monospace;
+      }
+      h1 span, h2 span, h3 span{
+        font-family: "Lucida console", "Courier New", "consolas", monospace;
+
+      }
+      h1 input,h2 input,h3 input{
+        font-size: 24px;
+        font-family: "Lucida console", "Courier New", "consolas", monospace;
+      }
+      table{
+        width: 50%;
+        font-size: 24px;
+        font-family: "Lucida console", "Courier New", "consolas", monospace;
+      }
+      input[name$="Str"], input[name$="Dex"], input[name$="Con"], input[name$="Wil"], input[name$="Mnd"], input[name$="Spi"]{
+        width: 100%;
+        color: red;
+        font-size: 24px;
+      }
+      tr th:nth-child(1n + 2){
+        width: 40%;
+      }
+      tr td:first-child{
+        width: 20%;
+        text-align: center;
+        color: grey !important;
+      }
+    </style>
   </head>
   <body>
     <h1>
