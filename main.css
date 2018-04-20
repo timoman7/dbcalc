@@ -1,0 +1,80 @@
+html{
+    background: darkblue;
+  }
+  input[name="upgradeInc"]{
+    width: 60px;
+  }
+  h1, h2, h3{
+    font-family: "Lucida console", "Courier New", "consolas", monospace;
+  }
+  h1 span, h2 span, h3 span{
+    font-family: "Lucida console", "Courier New", "consolas", monospace;
+
+  }
+  h1 input,h2 input,h3 input{
+    font-size: 24px;
+    font-family: "Lucida console", "Courier New", "consolas", monospace;
+  }
+  table{
+    background: darkslateblue;
+    padding: 5px 10px 5px 5px;
+    border: white 0.1em solid;
+    border-collapse: collapse;
+    font-size: 24px;
+    font-family: "Lucida console", "Courier New", "consolas", monospace;
+  }
+  table tr{
+    border: dimgrey 0.1em dotted;
+  }
+  table#attributes{
+    width: 50%;
+  }
+  table#statistics{
+    width: 100%;
+  }
+  input.stat{
+    width: 90%;
+    text-align: center;
+    color: crimson;
+    font-size: 24px;
+  }
+  table#skills input.stat{
+    width: 40%;
+  }
+  table#skills tr th:nth-child(1n + 2){
+    width: 30%;
+  }
+  table#skills tr td:nth-child(1n + 2){
+    width: 30%;
+    text-align: center;
+  }
+  table#skills tr td:first-child{
+    width: 40%;
+    text-align: center;
+    color: grey !important;
+  }
+  table#attributes tr th:nth-child(1n + 2){
+    width: 40%;
+  }
+  table#attributes tr td:first-child{
+    width: 20%;
+    text-align: center;
+    color: grey !important;
+  }
+  table#statistics tr th:nth-child(1n + 2){
+    width: 40%;
+  }
+  table#statistics tr td:first-child{
+    width: 40%;
+    text-align: center;
+    color: grey !important;
+  }
+  table#statistics tr td:nth-child(1n + 2){
+    text-align: center;
+  }
+  table#statistics tr td:nth-child(1n + 2){
+    color: crimson;
+  }
+  .modifying-content{
+    display: flex;
+  }

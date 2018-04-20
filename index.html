@@ -3,72 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Dragon Block C: Stat Calculator</title>
-    <style media="screen">
-      html{
-        background: darkblue;
-      }
-      input[name="upgradeInc"]{
-        width: 60px;
-      }
-      h1, h2, h3{
-        font-family: "Lucida console", "Courier New", "consolas", monospace;
-      }
-      h1 span, h2 span, h3 span{
-        font-family: "Lucida console", "Courier New", "consolas", monospace;
-
-      }
-      h1 input,h2 input,h3 input{
-        font-size: 24px;
-        font-family: "Lucida console", "Courier New", "consolas", monospace;
-      }
-      table{
-        background: darkslateblue;
-        padding: 5px 10px 5px 5px;
-        border: white 0.1em solid;
-        border-collapse: collapse;
-        font-size: 24px;
-        font-family: "Lucida console", "Courier New", "consolas", monospace;
-      }
-      table tr{
-        border: dimgrey 0.1em dotted;
-      }
-      table#attributes{
-        width: 50%;
-      }
-      table#statistics{
-        width: 100%;
-      }
-      input[name$="Str"], input[name$="Dex"], input[name$="Con"], input[name$="Wil"], input[name$="Mnd"], input[name$="Spi"]{
-        width: 90%;
-        text-align: center;
-        color: crimson;
-        font-size: 24px;
-      }
-      table#attributes tr th:nth-child(1n + 2){
-        width: 40%;
-      }
-      table#attributes tr td:first-child{
-        width: 20%;
-        text-align: center;
-        color: grey !important;
-      }
-      table#statistics tr th:nth-child(1n + 2){
-        width: 40%;
-      }
-      table#statistics tr td:first-child{
-        width: 40%;
-        text-align: center;
-        color: grey !important;
-      }
-      table#statistics tr td:nth-child(1n + 2){
-        text-align: center;
-      }
-      table#statistics tr td:nth-child(1n + 2){
-        color: crimson;
-      }
-    </style>
+    <link rel="stylesheet" href="./main.css">
   </head>
   <body>
+    <template id="currentTargetRow">
+      <tr>
+        <td id="displayTitle"></td>
+        <td id="current"></td>
+        <td id="target"></td>
+      </tr>
+    </template>
     <h1>
       <label for="upgradeInc">Upgrade Increment:</label>
       <input type="number" name="upgradeInc" min="1" value="2" tabindex="1">
@@ -81,127 +25,29 @@
     <h2>
       <span id="tpCondition">Remaining TP:</span> <span id="tpRemaining">0</span>
     </h2>
-    <table id="attributes">
-      <tr>
-        <th>Attribute</th>
-        <th>Current</th>
-        <th>Target</th>
-      </tr>
-      <tr>
-        <td>STR: </td>
-        <td>
-          <input type="number" name="C_Str" min="0" value="0" tabindex="3"> <!-- 3200 -->
-        </td>
-        <td>
-          <input type="number" name="Str" min="0" value="0" tabindex="9"> <!-- 3200 -->
-        </td>
-      </tr>
-      <tr>
-        <td>DEX: </td>
-        <td>
-          <input type="number" name="C_Dex" min="0" value="0" tabindex="4"> <!-- 2000 -->
-        </td>
-        <td>
-          <input type="number" name="Dex" min="0" value="0" tabindex="10"> <!-- 2000 -->
-        </td>
-      </tr>
-      <tr>
-        <td>CON: </td>
-        <td>
-          <input type="number" name="C_Con" min="0" value="0" tabindex="5"> <!-- 2000 -->
-        </td>
-        <td>
-          <input type="number" name="Con" min="0" value="0" tabindex="11"> <!-- 2000 -->
-        </td>
-      </tr>
-      <tr>
-        <td>WIL: </td>
-        <td>
-          <input type="number" name="C_Wil" min="0" value="0" tabindex="6"> <!-- 1000 -->
-        </td>
-        <td>
-          <input type="number" name="Wil" min="0" value="0" tabindex="12"> <!-- 1000 -->
-        </td>
-      </tr>
-      <tr>
-        <td>MND: </td>
-        <td>
-          <input type="number" name="C_Mnd" min="0" value="0" tabindex="7"> <!-- 1033 -->
-        </td>
-        <td>
-          <input type="number" name="Mnd" min="0" value="0" tabindex="13"> <!-- 1033 -->
-        </td>
-      </tr>
-      <tr>
-        <td>SPI: </td>
-        <td>
-          <input type="number" name="C_Spi" min="0" value="0" tabindex="8"> <!-- 1550 -->
-        </td>
-        <td>
-          <input type="number" name="Spi" min="0" value="0" tabindex="14"> <!-- 1550 -->
-        </td>
-      </tr>
-    </table>
+    <h2>Current Level: <span id="C_level">0</span><br>Target Level: <span id="level">0</span></h2>
+    <div class="modifying-content">
+      <table id="attributes">
+        <tr>
+          <th>Attribute</th>
+          <th>Current</th>
+          <th>Target</th>
+        </tr>
+      </table>
+      <table id="skills">
+        <tr>
+          <th>Skill</th>
+          <th>Current</th>
+          <th>Target</th>
+        </tr>
+      </table>
+    </div>
     <h2>Upgrade Cost: <span id="uc">0</span> TP</h2> <!-- 21566 -->
     <table id="statistics">
       <tr>
-        <th>Stastics</th>
+        <th>Statistics</th>
         <th>Current</th>
         <th>Target</th>
-      </tr>
-      <tr>
-        <td>Melee Dmg: </td>
-        <td>
-          <span name="C_MDmg">0</span>
-        </td>
-        <td>
-          <span name="MDmg">0</span>
-        </td>
-      </tr>
-      <tr>
-        <td>Defense: </td>
-        <td>
-          <span name="C_Def">0</span>
-        </td>
-        <td>
-          <span name="Def">0</span>
-        </td>
-      </tr>
-      <tr>
-        <td>Body: </td>
-        <td>
-          <span name="C_Bod">0</span>
-        </td>
-        <td>
-          <span name="Bod">0</span>
-        </td>
-      </tr>
-      <tr>
-        <td>Stamina: </td>
-        <td>
-          <span name="C_Stam">0</span>
-        </td>
-        <td>
-          <span name="Stam">0</span>
-        </td>
-      </tr>
-      <tr>
-        <td>Ki Power: </td>
-        <td>
-          <span name="C_KiP">0</span>
-        </td>
-        <td>
-          <span name="KiP">0</span>
-        </td>
-      </tr>
-      <tr>
-        <td>Max Ki: </td>
-        <td>
-          <span name="C_MKi">0</span>
-        </td>
-        <td>
-          <span name="MKi">0</span>
-        </td>
       </tr>
     </table>
     <script src="./main.js" charset="utf-8"></script>
