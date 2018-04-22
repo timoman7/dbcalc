@@ -199,8 +199,8 @@ function Main(){
       D_tpCondition.innerHTML = "Remaining TP:";
       D_tpRemaining.innerHTML = info.leftover;
     }
-    C_level.innerHTML = Math.floor(StatSum/5);
-    D_level.innerHTML = Math.floor(T_StatSum/5);
+    C_level.innerHTML = Math.floor((StatSum/5)-11);
+    D_level.innerHTML = Math.floor((T_StatSum/5)-11);
     let _StatArr = (function(){let r = [];StatArr.forEach(e=>r.push(e.valueAsNumber));return r;})();
     let _C_StatArr = (function(){let r = [];C_StatArr.forEach(e=>r.push(e.valueAsNumber));return r;})();
     let curStats = calculateStats(..._C_StatArr);
