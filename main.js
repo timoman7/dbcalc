@@ -3,6 +3,27 @@ let lazyList = {
     'title': 'Not enough data to calculate properly'
   }
 };
+function saveData(_json_){
+  let jsonse = JSON.stringify(_json_);
+  let blob = new Blob([jsonse], {type: "application/json"});
+  let url  = URL.createObjectURL(blob);
+  let _a = document.createElement('a');
+  _a.href        = url;
+  _a.download    = "character.json";
+  _a.textContent = "Download character.json";
+  _a.click();
+}
+function setView(viewN){
+  document.querySelectorAll('.view').forEach((e,i)=>{
+    if(i != viewN){
+      e.classList.add('view-inactive');
+      e.classList.remove('view-active');
+    }else{
+      e.classList.remove('view-inactive');
+      e.classList.add('view-active');
+    }
+  });
+}
 function wildContains(list, check){
   let rv = {
     success: false,
@@ -96,6 +117,12 @@ function Main(){
   let D_level = document.querySelector('#level');
   //  Upgrade Cost
   let D_uc = document.querySelector('#uc');
+  let C_saveChar = document.querySelector('#saveChar');
+  let C_charName = document.querySelector('#charName'),
+      C_charClass = document.querySelector('#charClass'),
+      C_charRace = document.querySelector('#charRace'),
+      C_charGender = document.querySelector('#charGender'),
+      C_charAge = document.querySelector('#charAge');
   let StatArray = createTimeline({
     container: '#attributes',
     tag: 'input',
@@ -268,6 +295,96 @@ function Main(){
   D_curTP.addEventListener('change', updateStatSum);
   D_upgradeInc.addEventListener('change', updateStatSum);
   modifyDOMClasses(lazyList);
+  setView(0);
+  C_saveChar.addEventListener('click', function(){
+    let characterData = {
+      Attributes: {
+        Current: {
+          Str: C_StatArr[0].valueAsNumber,
+          Dex: C_StatArr[1].valueAsNumber,
+          Con: C_StatArr[2].valueAsNumber,
+          Wil: C_StatArr[3].valueAsNumber,
+          Mnd: C_StatArr[4].valueAsNumber,
+          Spi: C_StatArr[5].valueAsNumber
+        },
+        Target: {
+          Str: StatArr[0].valueAsNumber,
+          Dex: StatArr[1].valueAsNumber,
+          Con: StatArr[2].valueAsNumber,
+          Wil: StatArr[3].valueAsNumber,
+          Mnd: StatArr[4].valueAsNumber,
+          Spi: StatArr[5].valueAsNumber
+        }
+      },
+      Skills: {
+        Current: {
+          Jump: Skills.Current[0].valueAsNumber,
+          Fly: Skills.Current[1].valueAsNumber,
+          Meditation: Skills.Current[2].valueAsNumber,
+          Potential_Unlock: Skills.Current[3].valueAsNumber,
+          Ki_Protection: Skills.Current[4].valueAsNumber,
+          Endurance: Skills.Current[5].valueAsNumber,
+          Ki_Sense: Skills.Current[6].valueAsNumber,
+          Defense_Penetration: Skills.Current[7].valueAsNumber,
+          Dash: Skills.Current[8].valueAsNumber,
+          Ki_Boost: Skills.Current[9].valueAsNumber,
+          Ki_Fist: Skills.Current[10].valueAsNumber,
+          Fusion: Skills.Current[11].valueAsNumber,
+          God_Form: Skills.Current[12].valueAsNumber,
+          Kaioken: Skills.Current[13].valueAsNumber
+        },
+        Target: {
+          Jump: Skills.Target[0].valueAsNumber,
+          Fly: Skills.Target[1].valueAsNumber,
+          Meditation: Skills.Target[2].valueAsNumber,
+          Potential_Unlock: Skills.Target[3].valueAsNumber,
+          Ki_Protection: Skills.Target[4].valueAsNumber,
+          Endurance: Skills.Target[5].valueAsNumber,
+          Ki_Sense: Skills.Target[6].valueAsNumber,
+          Defense_Penetration: Skills.Target[7].valueAsNumber,
+          Dash: Skills.Target[8].valueAsNumber,
+          Ki_Boost: Skills.Target[9].valueAsNumber,
+          Ki_Fist: Skills.Target[10].valueAsNumber,
+          Fusion: Skills.Target[11].valueAsNumber,
+          God_Form: Skills.Target[12].valueAsNumber,
+          Kaioken: Skills.Target[13].valueAsNumber
+        }
+      },
+      Statistics: {
+        Current: {
+          Melee_Damage: targetResults[0].innerHTML,
+          Defense: {
+            Max: targetResults[1].innerHTML.split('/')[0],
+            Passive: targetResults[1].innerHTML.split('/')[1] || targetResults[1].innerHTML.split('/')[0]
+          },
+          Body: targetResults[2].innerHTML,
+          Stamina: targetResults[3].innerHTML,
+          Ki_Power: targetResults[4].innerHTML,
+          Max_Ki: targetResults[5].innerHTML,
+        },
+        Target: {
+          Melee_Damage: currentResults[0].innerHTML,
+          Defense: {
+            Max: currentResults[1].innerHTML.split('/')[0],
+            Passive: currentResults[1].innerHTML.split('/')[1] || currentResults[1].innerHTML.split('/')[0]
+          },
+          Body: currentResults[2].innerHTML,
+          Stamina: currentResults[3].innerHTML,
+          Ki_Power: currentResults[4].innerHTML,
+          Max_Ki: currentResults[5].innerHTML,
+        }
+      },
+      Character: {
+        Name: C_charName.value,
+        Class: C_charClass.value,
+        Race: C_charRace.value,
+        Gender: C_charGender.value,
+        Age: C_charAge.value
+      },
+      CurrentTP: D_curTP.valueAsNumber
+    };
+    saveData(characterData);
+  });
 }
 
 window.onload = Main;

@@ -1,6 +1,23 @@
 html, body{
   background: rgb(0, 0, 200);
 }
+.view{
+  background: darkslateblue;
+  padding: 5px 10px 5px 5px;
+  border: white 0.1em solid;
+  border-collapse: collapse;
+  font-size: 24px;
+  font-family: "Lucida console", "Courier New", "consolas", monospace;
+}
+table.view.view-active{
+  display: table;
+}
+.view.view-active{
+  display: inherit;
+}
+.view.view-inactive{
+  display: none;
+}
 input[name="upgradeInc"]{
   width: 60px;
 }
@@ -27,7 +44,7 @@ table tr{
   border: dimgrey 0.1em dotted;
 }
 table#attributes{
-  width: 50%;
+  width: 100%;
 }
 table#statistics{
   width: 100%;
@@ -79,6 +96,9 @@ table#statistics tr td:nth-child(1n + 2){
 table#statistics tr td:nth-child(1n + 2){
   color: crimson;
 }
-.modifying-content{
-  display: flex;
+div#character{
+  width: 100%;
 }
+/* .modifying-content{
+  display: flex;
+} */

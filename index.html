@@ -16,6 +16,23 @@
         <td id="target"></td>
       </tr>
     </template>
+    <ul class="nav nav-tabs nav-fill sticky-top" style="background:white">
+      <li class="nav-item active" onclick="setView(0)">
+        <a class="nav-link" href="#">Attributes</a>
+      </li>
+      <li class="nav-item" onclick="setView(1)">
+        <a class="nav-link" href="#">Skills</a>
+      </li>
+      <li class="nav-item" onclick="setView(2)">
+        <a class="nav-link" href="#">Character</a>
+      </li>
+    </ul>
+    <h2 id="charData">
+      <label for="charJSON">Load character:</label>
+      <input type="file" name="charJSON" id="charJSON" accepts="*/json">
+      <br>
+      <span>Save character: <button id="saveChar" style="font-size: 24px;">Save character</button></span>
+    </h2>
     <h1>
       <label for="upgradeInc">Upgrade Increment:</label>
       <input type="number" name="upgradeInc" min="1" value="2" tabindex="1">
@@ -30,20 +47,69 @@
     </h2>
     <h2 class="more-info">Current Level: <span id="C_level" min="0">0</span><br>Target Level: <span id="level" min="0">0</span></h2>
     <div class="modifying-content">
-      <table id="attributes">
+      <table id="attributes" class="view">
         <tr>
           <th>Attribute</th>
           <th>Current</th>
           <th>Target</th>
         </tr>
       </table>
-      <table id="skills">
+      <table id="skills" class="view">
         <tr>
           <th>Skill</th>
           <th>Current</th>
           <th>Target</th>
         </tr>
       </table>
+      <div id="character" class="view">
+        <h2>
+          <label for="charName">Name:</label>
+          <input type="text" name="charName" id="charName" minlength="1" placeholder="Character Name">
+        </h2>
+        <h3>
+          <label for="charClass">Class:</label>
+          <select name="charClass" id="charClass">
+            <option value="martialArtist" title="Balanced ki and melee">Martial Artist</option>
+            <option value="spiritualist" title="Ki-focused">Spiritualist</option>
+            <option value="warrior" title="Melee-focused">Warrior</option>
+          </select>
+        </h3>
+        <h3>
+          <label for="charRace">Race:</label>
+          <select name="charRace" id="charRace">
+            <optgroup label="Saiyans">
+              <option value="saiyan">Saiyan</option>
+              <option value="halfSaiyan">Half-Saiyan</option>
+            </optgroup>
+            <optgroup label="Arcosians">
+              <option value="arcosian">Arcosian</option>
+            </optgroup>
+            <optgroup label="Namekians">
+              <option value="namekian">Namekian</option>
+            </optgroup>
+            <optgroup label="Apollo Exclusive">
+              <option value="majin">Majin</option>
+              <option value="demon">Demon</option>
+            </optgroup>
+          </select>
+        </h3>
+        <h3>
+          <label for="charGender">Gender:</label>
+          <select name="charGender" id="charGender">
+            <option value="m">Male</option>
+            <option value="f">Female</option>
+          </select>
+        </h3>
+        <h3>
+          <label for="charAge">Age:</label>
+          <select name="charAge" id="charAge">
+            <option value="baby">Baby</option>
+            <option value="child">Child</option>
+            <option value="teen">Teen</option>
+            <option value="adult">Adult</option>
+          </select>
+        </h3>
+      </div>
     </div>
     <h2>Upgrade Cost: <span id="uc">0</span> TP</h2> <!-- 21566 -->
     <table id="statistics">
