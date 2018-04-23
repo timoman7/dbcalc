@@ -1,3 +1,39 @@
+let lazyList = {
+  'more-info': {
+    'title': 'Not enough data to calculate properly'
+  }
+};
+function wildContains(list, check){
+  let rv = {
+    success: false,
+    attr: []
+  };
+  for(let ind in list){
+    let kv = list[ind];
+    if(check.contains(kv)){
+      rv.success = true;
+      rv.attr.push(kv);
+    }else{
+      return {
+        success: false,
+        attr: []
+      };
+    }
+  }
+  return rv;
+}
+function modifyDOMClasses(modList){
+  document.querySelectorAll('*').forEach((e)=>{
+    let DOMStuff = wildContains(Object.keys(modList), e.classList);
+    if(DOMStuff.success){
+      DOMStuff.attr.forEach((a)=>{
+        for(let attrKN in modList[a]){
+          e.setAttribute(attrKN, modList[a][attrKN]);
+        }
+      });
+    }
+  });
+};
 function createTimeline(options, names){
   let tRow = document.querySelector("#currentTargetRow");
   let container;
@@ -25,6 +61,14 @@ function createTimeline(options, names){
     if(options.innerHTML){
       cEl.innerHTML = options.innerHTML;
       tEl.innerHTML = options.innerHTML;
+    }
+    if(options.tag.toLowerCase() == 'input'){
+      cEl.addEventListener('change', (e)=>{
+        tEl.setAttribute('min', cEl.valueAsNumber);
+        if(tEl.valueAsNumber < parseFloat(tEl.getAttribute('min'))){
+          tEl.value = parseFloat(tEl.getAttribute('min'));
+        }
+      });
     }
     let tempN_name = names[i]+"";
     cEl.setAttribute('name', `C_${tempN_name.replace('_','')}`);
@@ -96,7 +140,8 @@ function Main(){
       type: 'number',
       min: '0',
       value: '0',
-      class: 'stat'
+      class: 'stat',
+      title: 'Need more info on multipliers to calculate properly.'
     }
   }, [
     'Jump',
@@ -174,13 +219,13 @@ function Main(){
     C_StatArr.forEach((e)=>{
       StatSum += e.valueAsNumber;
     });
-    StatArr.forEach((e)=>{
-      e.setAttribute('min', C_StatArr[StatArr.indexOf(e)].valueAsNumber);
-      if(e.valueAsNumber < parseFloat(e.getAttribute('min'))){
-        e.value = parseFloat(e.getAttribute('min'));
-      }
-      T_StatSum += e.valueAsNumber;
-    });
+    // StatArr.forEach((e)=>{
+    //   e.setAttribute('min', C_StatArr[StatArr.indexOf(e)].valueAsNumber);
+    //   if(e.valueAsNumber < parseFloat(e.getAttribute('min'))){
+    //     e.value = parseFloat(e.getAttribute('min'));
+    //   }
+    //   T_StatSum += e.valueAsNumber;
+    // });
     let newUC = T_StatSum * D_upgradeInc.valueAsNumber;
     D_uc.innerHTML = newUC;
     let currentTP = D_curTP.valueAsNumber,
@@ -222,6 +267,7 @@ function Main(){
   C_StatArr.forEach(e=>e.addEventListener('change', updateStatSum));
   D_curTP.addEventListener('change', updateStatSum);
   D_upgradeInc.addEventListener('change', updateStatSum);
+  modifyDOMClasses(lazyList);
 }
 
 window.onload = Main;
